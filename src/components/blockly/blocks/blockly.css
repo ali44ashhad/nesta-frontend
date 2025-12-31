@@ -1,0 +1,268 @@
+/* Custom styles for Blockly workspace */
+
+.blocklyToolboxDiv {
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: none; /* Hide default toolbox, using custom CategoryPanel instead */
+  
+}
+
+.blocklyToolboxContents {
+  display: none !important;
+}
+
+.blocklyFlyoutBackground {
+  fill: #ffffff;
+}
+
+.blocklyFlyout {
+  transform: translateX(520px);/* Shift right */
+}
+
+.blocklyMainBackground {
+  stroke-width: 0;
+  fill: #ffffff;
+}
+
+.blocklySvg {
+  background-color: #ffffff;
+  background-image:
+    /* Cyan grid lines matching WelcomePrompt */
+    linear-gradient(to right, rgba(47, 193, 232, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(47, 193, 232, 0.18) 1px, transparent 1px);
+  background-size:
+    40px 40px,   /* grid spacing */
+    40px 40px;   /* grid spacing */
+
+  background-position: 0 0, 0 0;
+  /* clip-path: polygon(0% 0%, 0% 0%, 13% 0%, 20% 4%, 80% 4%, 87% 0%, 100% 0%, 100% 100%, 87% 100%, 80% 96%, 20% 96%, 13% 100%, 0% 100%); */
+}
+
+
+
+.blocklyScrollbarHandle {
+  fill: #ccc;
+  display: none;
+}
+
+.blocklyZoom > image {
+  opacity: 0.7;
+}
+
+.blocklyZoom > image:hover {
+  opacity: 1;
+}
+
+/* Make the blocks a bit prettier */
+.blocklyPathLight {
+  fill: none;
+  stroke-width: 2;
+}
+
+.blocklySelected > .blocklyPath {
+  stroke-width: 2;
+}
+
+/* Dynamic block colors based on selected category - ONLY for flyout blocks */
+.blocklyFlyout .blocklyPath {
+  fill: var(--blockly-category-color, #5ba55b) !important;
+}
+
+/* Category styles */
+.blocklyTreeRow {
+  padding: 3px 0;
+  height: 30px;
+  line-height: 22px;
+  border-left: none !important;
+}
+
+.blocklyTreeRowContentContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.blocklyTreeRowContent {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+/* Hide text labels in category rows by default */
+.blocklyTreeRow .blocklyTreeLabel {
+  display: none !important;
+}
+
+.blocklyTreeIcon {
+  margin-right: 6px;
+}
+
+/* Hide flyout and scrollbar when empty */
+.blocklyFlyout:not(:has(.blocklyBlockCanvas > g)) {
+  display: none !important;
+}
+.blocklyFlyoutScrollbar {
+  display: none !important;
+}
+
+
+
+/* 
+
+Move Blockly zoom controls to bottom center - Responsive
+.blocklyZoomOut {
+  transform: translate(-280px, 150px);
+}
+
+.blocklyZoomIn {
+  transform: translate(-320px, 150px);
+}
+
+.blocklyZoomReset {
+  transform: translate(-260px, 135px);
+}
+
+.blocklyTrash {
+  transform: translate(280px, 500px);
+}
+
+Responsive sizes for zoom controls and trash
+.blocklyZoomOut image,
+.blocklyZoomIn image,
+.blocklyZoomReset image,
+.blocklyTrash image {
+  width: 60px;
+  height: 60px;
+  opacity: 1;
+  transition: all 0.25s ease;
+}
+
+.blocklyZoomReset image {
+  height: 70px;
+  width: 70px;
+}
+
+.blocklyTrash image {
+  height: 65px;
+  width: 65px;
+}
+
+=== TRASH BODY ===
+.blocklyTrash > image:nth-of-type(1) {
+  clip-path: inset(43px 47px 32px 0px);
+  width: 60px;
+  height: 60px;
+}
+
+=== TRASH LID ===
+.blocklyTrash > image:nth-of-type(2) {
+  clip-path: inset(26px 53px 53px 0px);
+  width: 60px;
+  height: 60px;
+  transition: transform 0.25s ease;
+}
+
+Clip paths - responsive adjustments
+.blocklyZoomOut > image {
+  clip-path: inset(0px 0px 0px 63px);
+}
+
+.blocklyZoomIn > image {
+  clip-path: inset(74px 37px 0px 37px);
+}
+
+.blocklyZoomReset > image {
+  clip-path: inset(90px 76px 0px 0px);
+}
+
+.blocklyZoom > image:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+Responsive breakpoints
+@media (min-width: 640px) {
+  .blocklyZoomOut {
+    transform: translate(-320px, 170px);
+  }
+
+  .blocklyZoomIn {
+    transform: translate(-360px, 170px);
+  }
+
+  .blocklyZoomReset {
+    transform: translate(-300px, 155px);
+  }
+
+  .blocklyTrash {
+    transform: translate(320px, 570px);
+  }
+
+  .blocklyZoomOut image,
+  .blocklyZoomIn image,
+  .blocklyZoomReset image,
+  .blocklyTrash image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .blocklyZoomReset image {
+    height: 95px;
+    width: 95px;
+  }
+
+  .blocklyTrash image {
+    height: 85px;
+    width: 85px;
+  }
+
+  .blocklyTrash > image:nth-of-type(1),
+  .blocklyTrash > image:nth-of-type(2) {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blocklyZoomOut {
+    transform: translate(-350px, 190px);
+  }
+
+  .blocklyZoomIn {
+    transform: translate(-390px, 190px);
+  }
+
+  .blocklyZoomReset {
+    transform: translate(-330px, 173px);
+  }
+
+  .blocklyTrash {
+    transform: translate(373px, 642px);
+  }
+
+  .blocklyZoomOut image,
+  .blocklyZoomIn image,
+  .blocklyZoomReset image,
+  .blocklyTrash image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .blocklyZoomReset image {
+    height: 120px;
+    width: 120px;
+  }
+
+  .blocklyTrash image {
+    height: 110px;
+    width: 110px;
+  }
+
+  .blocklyTrash > image:nth-of-type(1),
+  .blocklyTrash > image:nth-of-type(2) {
+    width: 100px;
+    height: 100px;
+  }
+}
+ */
