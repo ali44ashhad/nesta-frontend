@@ -1,0 +1,41 @@
+// Simulator constants
+export const SIMULATOR_CONSTANTS = {
+  // Movement
+  MOVE_DISTANCE: 30,
+  TURN_ANGLE: 90,
+  CAR_BUFFER: 15,
+  
+  // Sensor
+  ULTRASONIC_MAX_DISTANCE: 300,
+  IR_DETECTION_THRESHOLD: 20,
+  SENSOR_OFFSET: 15,
+  
+  // Temperature sensor simulation
+  TEMP_BASE: 25,
+  TEMP_VARIATION: 2,
+  
+  // LDR sensor simulation
+  LDR_BASE: 500,
+  LDR_VARIATION: 200,
+  LDR_MIN: 300,
+  LDR_MAX: 700,
+  
+  // Collision
+  COLLISION_SHAKE_DURATION: 300,
+  COLLISION_SOUND_FREQUENCY: 100,
+  
+  // Code execution limits
+  MAX_RECURSION_DEPTH: 50,
+  MAX_QUEUE_SIZE: 1000,
+  MAX_WHILE_ITERATIONS: 1000,
+  MAX_PAREN_ITERATIONS: 100,
+  MAX_SCAN_ITERATIONS: 1000,
+  
+  // Canvas
+  INITIAL_CANVAS_WIDTH: 600,
+  INITIAL_CANVAS_HEIGHT: 400,
+  INITIAL_CAR_X: 250,
+  INITIAL_CAR_Y: 200,
+  INITIAL_CAR_ANGLE: 0,
+} as const;
+

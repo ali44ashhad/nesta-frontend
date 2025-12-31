@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/OTAFirmwareUpdate/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="ESP32 Firmware Updater">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="ESP32 Firmware Updater">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>ESP32 Firmware Updater</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Load USB Serial API support before Flutter -->
+  <script src="serial.js"></script>
+
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    const serviceWorkerVersion = "1857023945";
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js" defer></script>
+  
+  <!-- Web Serial and BLE API Support -->
+  <script>
+    // Check for Web Serial and BLE API support
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check Web Serial API
+      if ('serial' in navigator) {
+        console.log('Web Serial API is available');
+      } else {
+        console.log('Web Serial API is not available');
+      }
+
+      // Check Web Bluetooth API
+      if ('bluetooth' in navigator) {
+        console.log('Web Bluetooth API is available');
+      } else {
+        console.log('Web Bluetooth API is not available');
+      }
+
+      // Polyfill for TextEncoder/TextDecoder if needed
+      if (typeof TextEncoder === 'undefined') {
+        console.warn('TextEncoder not available, loading polyfill');
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/text-encoding@0.7.0/lib/encoding.min.js';
+        document.head.appendChild(script);
+      }
+    });
+
+    // Helper function to convert between ArrayBuffer and string
+    function ab2str(buf) {
+      return String.fromCharCode.apply(null, new Uint8Array(buf));
+    }
+
+    function str2ab(str) {
+      const buf = new ArrayBuffer(str.length);
+      const bufView = new Uint8Array(buf);
+      for (let i = 0; i < str.length; i++) {
+        bufView[i] = str.charCodeAt(i);
+      }
+      return buf;
+    }
+  </script>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

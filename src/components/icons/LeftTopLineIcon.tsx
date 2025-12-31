@@ -1,0 +1,10 @@
+import React from "react";
+
+const LeftTopLineIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg width="444" height="54" viewBox="0 0 444 54" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M226.2 28.3L238.7 40.8C237.1 40.8 236.1 40.8 234.5 40.8L226.2 32.5C226.2 30.9 226.2 30 226.2 28.3Z" fill="#353535" />
+    <path d="M0 12.7H210.7L251.1 53.1H401.2L443.7 11.3V0" stroke="#353535" strokeWidth="1" strokeMiterlimit={10} />
+  </svg>
+);
+
+export default LeftTopLineIcon;
